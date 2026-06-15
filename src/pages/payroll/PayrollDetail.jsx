@@ -104,8 +104,6 @@ function PayslipPreview({ p }) {
     cancelled: '#fef2f2',
   }[p.payment_status] ?? '#f1f5f9';
 
-  const maxRows = Math.max(earnings.length, deductions.length);
-
   return (
     <div className="pay-slip-doc">
       {/* ── Letterhead ── */}

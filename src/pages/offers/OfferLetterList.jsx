@@ -111,7 +111,7 @@ export default function OfferLetterList() {
   useEffect(() => {
     const t = setTimeout(load, search ? 300 : 0);
     return () => clearTimeout(t);
-  }, [load]);
+  }, [load, search]);
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE);
   const rangeStart = totalCount === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;

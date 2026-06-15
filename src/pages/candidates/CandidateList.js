@@ -83,7 +83,7 @@ export default function CandidateList() {
     const delay = search ? 300 : 0;
     const t = setTimeout(load, delay);
     return () => clearTimeout(t);
-  }, [load]);
+  }, [load, search]);
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE);
   const rangeStart = totalCount === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;

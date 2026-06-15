@@ -44,13 +44,6 @@ const STATUS_LABELS = {
   cancelled: 'Cancelled',
 };
 
-const MODE_LABELS = {
-  bank_transfer: 'Bank Transfer',
-  cash:          'Cash',
-  cheque:        'Cheque',
-  upi:           'UPI',
-};
-
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function fmtINR(amount) {
   if (!amount && amount !== 0) return '—';
@@ -108,7 +101,7 @@ export default function PayrollList() {
   useEffect(() => {
     const t = setTimeout(load, search ? 300 : 0);
     return () => clearTimeout(t);
-  }, [load]);
+  }, [load, search]);
 
   const totalPages = Math.ceil(totalCount / PAGE_SIZE);
   const rangeStart = totalCount === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;

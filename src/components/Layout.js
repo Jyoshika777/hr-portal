@@ -180,7 +180,6 @@ function GlobalSearch() {
           autoComplete="off"
           spellCheck={false}
           aria-label="Global search"
-          aria-expanded={open}
           aria-haspopup="listbox"
         />
         {loading
