@@ -1,0 +1,665 @@
+/* ═══════════════════════════════════════════════════════════
+   Performance Reviews module styles
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Review type badges ──────────────────────────────────── */
+.rev-type-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rev-type-annual       { background: #eff6ff; color: #1d4ed8; }
+.rev-type-quarterly    { background: #f5f3ff; color: #6d28d9; }
+.rev-type-probation    { background: #fff7ed; color: #c2410c; }
+.rev-type-pip          { background: #fef2f2; color: #b91c1c; }
+.rev-type-promotion    { background: #f0fdf4; color: #15803d; }
+.rev-type-warning      { background: #fef9c3; color: #92400e; }
+.rev-type-commendation { background: #fdf4ff; color: #9333ea; }
+.rev-type-exit         { background: #f1f5f9; color: #475569; }
+
+/* ── Rating label badges ─────────────────────────────────── */
+.rating-outstanding            { background: #f0fdf4; color: #15803d; }
+.rating-exceeds_expectations   { background: #eff6ff; color: #1d4ed8; }
+.rating-meets_expectations     { background: #f5f3ff; color: #6d28d9; }
+.rating-needs_improvement      { background: #fffbeb; color: #b45309; }
+.rating-unsatisfactory         { background: #fef2f2; color: #b91c1c; }
+
+/* ── Review status badges ────────────────────────────────── */
+.status-rev-draft        { background: #f1f5f9; color: #475569; }
+.status-rev-submitted    { background: #eff6ff; color: #1d4ed8; }
+.status-rev-acknowledged { background: #f0fdf4; color: #15803d; }
+.status-rev-closed       { background: #0f172a; color: #e2e8f0; }
+
+/* ── Recommendation badges ───────────────────────────────── */
+.rec-promote          { background: #f0fdf4; color: #15803d; }
+.rec-retain           { background: #eff6ff; color: #1d4ed8; }
+.rec-pip              { background: #fef2f2; color: #b91c1c; }
+.rec-warning_letter   { background: #fef9c3; color: #92400e; }
+.rec-terminate        { background: #450a0a; color: #fca5a5; }
+.rec-no_action        { background: #f1f5f9; color: #475569; }
+.rec-salary_increment { background: #fdf4ff; color: #9333ea; }
+.rec-role_change      { background: #fff7ed; color: #c2410c; }
+
+/* ── Performance form ─────────────────────────────────────── */
+.perf-form { max-width: 900px; }
+
+.perf-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+.perf-form-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+.perf-section-divider {
+  margin: 24px 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid #e2e8f0;
+}
+
+.perf-section-title {
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1e40af;
+  margin: 0 0 2px;
+}
+
+.perf-section-sub {
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+/* ── Rating widget (segmented 1–5 buttons) ───────────────── */
+.rating-widget {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.rating-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc;
+  font-size: 14px;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+
+.rating-btn:hover { border-color: #93c5fd; background: #eff6ff; color: #1d4ed8; }
+
+.rating-btn--1.rating-btn--active { background: #fef2f2; border-color: #fca5a5; color: #b91c1c; }
+.rating-btn--2.rating-btn--active { background: #fffbeb; border-color: #fde68a; color: #b45309; }
+.rating-btn--3.rating-btn--active { background: #f0f9ff; border-color: #bae6fd; color: #0369a1; }
+.rating-btn--4.rating-btn--active { background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }
+.rating-btn--5.rating-btn--active { background: #f0fdf4; border-color: #86efac; color: #15803d; }
+
+.rating-clear-btn {
+  font-size: 11px;
+  color: #94a3b8;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 4px;
+  font-family: inherit;
+  margin-left: 2px;
+}
+
+.rating-clear-btn:hover { color: #ef4444; }
+
+.rating-widget-label {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-left: 4px;
+}
+
+/* ── Computed overall rating display ─────────────────────── */
+.perf-overall-card {
+  background: linear-gradient(135deg, #1e40af, #3b82f6);
+  border-radius: 12px;
+  padding: 20px 24px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 20px 0;
+  max-width: 900px;
+}
+
+.perf-overall-number {
+  font-size: 52px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+.perf-overall-number--empty { font-size: 28px; opacity: 0.4; font-weight: 400; }
+
+.perf-overall-label { font-size: 13px; font-weight: 600; opacity: 0.85; margin-top: 4px; }
+
+.perf-overall-breakdown {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 24px;
+  flex: 1;
+  min-width: 0;
+}
+
+.perf-overall-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.perf-overall-cat { flex: 1; min-width: 0; }
+.perf-overall-dots {
+  display: flex;
+  gap: 3px;
+}
+
+.perf-overall-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.25);
+  flex-shrink: 0;
+}
+.perf-overall-dot--filled { background: rgba(255,255,255,0.9); }
+
+/* ── Employee search (same as payroll) ───────────────────── */
+.perf-emp-search-wrap { position: relative; }
+
+.perf-emp-spinner {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.perf-emp-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+  max-height: 240px;
+  overflow-y: auto;
+  margin-top: 4px;
+}
+
+.perf-emp-option {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  width: 100%;
+  padding: 9px 14px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s;
+  font-family: inherit;
+}
+
+.perf-emp-option:last-child { border-bottom: none; }
+.perf-emp-option:hover { background: #f8fafc; }
+
+.perf-emp-opt-ref  { font-size: 11px; font-weight: 700; color: #2563eb; font-family: monospace; }
+.perf-emp-opt-name { font-size: 13px; font-weight: 600; color: #0f172a; }
+.perf-emp-opt-dept { font-size: 11.5px; color: #64748b; }
+
+.perf-emp-selected-card {
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-self: flex-end;
+}
+
+.perf-emp-selected-ref  { font-size: 11px; font-weight: 700; color: #15803d; font-family: monospace; margin: 0; }
+.perf-emp-selected-name { font-size: 14px; font-weight: 700; color: #0f172a; margin: 0; }
+.perf-emp-selected-meta { font-size: 11.5px; color: #64748b; margin: 0; }
+
+/* ── Detail page ─────────────────────────────────────────── */
+.perf-tabs {
+  display: flex;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 24px;
+}
+
+.perf-tab-btn {
+  padding: 10px 22px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #64748b;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  transition: color 0.14s, border-color 0.14s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.perf-tab-btn:hover         { color: #1e40af; }
+.perf-tab-btn--active       { color: #1e40af; font-weight: 600; border-bottom-color: #1e40af; }
+
+.perf-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.perf-detail-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.perf-detail-card--full { grid-column: 1 / -1; }
+.perf-detail-card--accent { border-top: 3px solid #1e40af; }
+
+.perf-detail-card-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  color: #94a3b8;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.perf-detail-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.perf-detail-field  { display: flex; flex-direction: column; gap: 3px; }
+.perf-detail-label  { font-size: 10.5px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.perf-detail-value  { font-size: 13.5px; color: #0f172a; font-weight: 500; }
+.perf-detail-value--mono { font-family: monospace; }
+.perf-detail-value--pre  { white-space: pre-wrap; font-size: 13px; color: #374151; line-height: 1.75; }
+
+/* ── Rating bar (in detail view) ─────────────────────────── */
+.perf-rating-bars { display: flex; flex-direction: column; gap: 10px; }
+
+.perf-rating-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.perf-rating-bar-label {
+  font-size: 12px;
+  color: #475569;
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.perf-rating-bar-track {
+  flex: 1;
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.perf-rating-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.perf-rating-bar-val {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+  width: 20px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+/* ── Overall rating hero (in detail) ────────────────────── */
+.perf-rating-hero {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0;
+}
+
+.perf-rating-hero-number {
+  font-size: 56px;
+  font-weight: 800;
+  color: #1e40af;
+  line-height: 1;
+  letter-spacing: -2px;
+  flex-shrink: 0;
+}
+
+.perf-rating-hero-right { display: flex; flex-direction: column; gap: 6px; }
+.perf-rating-hero-label { font-size: 14px; font-weight: 700; color: #0f172a; }
+.perf-rating-hero-stars { display: flex; gap: 3px; }
+
+.perf-star { font-size: 18px; }
+.perf-star--filled { color: #f59e0b; }
+.perf-star--empty  { color: #e2e8f0; }
+.perf-star--half   { color: #f59e0b; opacity: 0.5; }
+
+/* ── Notes section ───────────────────────────────────────── */
+.perf-notes-section {
+  background: #f8fafc;
+  border-left: 3px solid #1e40af;
+  padding: 14px 18px;
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 12px;
+}
+
+.perf-notes-section--warning { border-color: #f59e0b; background: #fffbeb; }
+.perf-notes-section--green   { border-color: #15803d; background: #f0fdf4; }
+.perf-notes-section--red     { border-color: #b91c1c; background: #fef2f2; }
+
+.perf-notes-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin: 0 0 6px;
+}
+
+.perf-notes-text {
+  font-size: 13px;
+  color: #374151;
+  white-space: pre-wrap;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ── Employee performance history ────────────────────────── */
+.perf-history-timeline { display: flex; flex-direction: column; gap: 12px; }
+
+.perf-history-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  transition: border-color 0.12s, box-shadow 0.12s;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.perf-history-item:hover {
+  border-color: #93c5fd;
+  box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+}
+
+.perf-history-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.perf-history-body { flex: 1; min-width: 0; }
+
+.perf-history-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.perf-history-num {
+  font-family: monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2563eb;
+}
+
+.perf-history-reviewer {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.perf-history-rating {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.perf-history-score {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1e40af;
+  line-height: 1;
+}
+
+.perf-history-score--empty {
+  font-size: 13px;
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+/* ── Employee performance summary card ───────────────────── */
+.perf-emp-summary {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  border-radius: 12px;
+  padding: 20px 24px;
+  color: #fff;
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.perf-emp-summary-field { display: flex; flex-direction: column; gap: 2px; }
+
+.perf-emp-summary-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.perf-emp-summary-value { font-size: 18px; font-weight: 700; }
+.perf-emp-summary-value--big { font-size: 32px; font-weight: 800; line-height: 1; }
+
+/* ── Notes body (alias for notes-text used in detail) ─────── */
+.perf-notes-body {
+  font-size: 13px;
+  color: #374151;
+  white-space: pre-wrap;
+  line-height: 1.75;
+  margin: 0;
+}
+
+/* ── Rating bar item wrapper ─────────────────────────────── */
+.perf-rating-bar-item {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.perf-rating-bar-item .perf-rating-bar-label {
+  min-width: 180px;
+  font-size: 12.5px;
+  color: #475569;
+  flex-shrink: 0;
+}
+
+/* alias used in RatingBar component */
+.perf-rating-bar-value {
+  font-size: 12px;
+  color: #475569;
+  white-space: nowrap;
+  flex-shrink: 0;
+  min-width: 120px;
+}
+
+/* ── Stars row (in detail hero) ──────────────────────────── */
+.perf-stars {
+  display: flex;
+  gap: 2px;
+  font-size: 20px;
+}
+
+/* ── Locked selected card (edit page) ────────────────────── */
+.perf-emp-selected-card--locked {
+  background: #f0fdf4;
+  border: 1.5px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  max-width: 900px;
+}
+
+/* ── Employee summary cards (history page) ───────────────── */
+.perf-emp-summary-card {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 160px;
+}
+
+.perf-emp-summary-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.perf-emp-summary-value {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.perf-emp-summary-sub {
+  font-size: 11px;
+  opacity: 0.65;
+  line-height: 1.4;
+}
+
+/* ── History timeline (EmployeePerformanceHistory) ───────── */
+.perf-history-dot-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+  flex-shrink: 0;
+}
+
+.perf-history-line {
+  width: 2px;
+  flex: 1;
+  background: #e2e8f0;
+  min-height: 8px;
+  margin-top: 4px;
+}
+
+.perf-history-card {
+  flex: 1;
+  min-width: 0;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.12s;
+}
+
+.perf-history-card:hover { border-color: #93c5fd; }
+
+.perf-history-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  background: #fafafa;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.perf-history-card-body {
+  padding: 10px 14px 12px;
+}
+
+.perf-history-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .perf-form-grid        { grid-template-columns: 1fr; }
+  .perf-form-grid-3      { grid-template-columns: 1fr 1fr; }
+  .perf-detail-grid      { grid-template-columns: 1fr; }
+  .perf-detail-card--full { grid-column: 1; }
+  .perf-detail-fields    { grid-template-columns: 1fr; }
+  .perf-overall-card     { flex-direction: column; }
+  .perf-rating-bar-label { width: 110px; }
+  .perf-emp-summary      { flex-direction: column; gap: 16px; }
+  .perf-history-item     { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .perf-form-grid-3 { grid-template-columns: 1fr; }
+  .perf-tabs        { gap: 0; overflow-x: auto; }
+  .perf-tab-btn     { white-space: nowrap; padding: 8px 12px; font-size: 12px; }
+}
