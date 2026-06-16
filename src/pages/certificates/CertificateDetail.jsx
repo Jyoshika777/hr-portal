@@ -157,7 +157,12 @@ export default function CertificateDetail() {
   // Zoom state
   const [zoomMode,   setZoomMode]   = useState('fit-width');
   const [customZoom, setCustomZoom] = useState(1.0);
-  const [stageW,     setStageW]     = useState(820);
+  const [stageW,     setStageW]     = useState(() =>
+    typeof window !== 'undefined' ? Math.max(280, window.innerWidth) : 820
+  );
+  const [isMobile,   setIsMobile]   = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth < 640 : false
+  );
 
   useEffect(() => {
     getCertificate(id)
@@ -182,10 +187,22 @@ export default function CertificateDetail() {
     return () => obs.disconnect();
   }, []);
 
+  // Keep isMobile in sync with viewport
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
   const effectiveScale = useMemo(() => {
-    if (zoomMode === 'fit-width') return Math.max(0.1, (stageW - 64) / CERT_W);
+    if (zoomMode === 'fit-width') {
+      // Mobile: 8px padding each side → 16px total margin
+      // Desktop: 36px padding each side → 72px, plus 8px breathing → ~80px
+      const margin = isMobile ? 16 : 80;
+      return Math.max(0.05, (stageW - margin) / CERT_W);
+    }
     return customZoom;
-  }, [zoomMode, stageW, customZoom]);
+  }, [zoomMode, stageW, customZoom, isMobile]);
 
   const scaledW = Math.round(CERT_W * effectiveScale);
   const scaledH = Math.round(CERT_H * effectiveScale);
@@ -392,33 +409,44 @@ export default function CertificateDetail() {
                   <IconZoomIn />
                 </button>
 
-                <div className="cert-dl-z-sep" />
+                {/* Preset buttons — hidden on mobile via CSS */}
+                <div className="cert-dl-z-sep cert-dl-z-desktop" />
+                <div className="cert-dl-z-presets">
+                  <button
+                    className={`cert-dl-z-mode${isFitWidth ? ' cert-dl-z-mode--on' : ''}`}
+                    onClick={() => setZoomMode('fit-width')}
+                    title="Fit to width"
+                  >
+                    <IconFitWidth /> Fit Width
+                  </button>
 
+                  <button
+                    className={`cert-dl-z-mode${isCustom100 ? ' cert-dl-z-mode--on' : ''}`}
+                    onClick={() => zoomTo(1)}
+                    title="100% actual size"
+                  >
+                    100%
+                  </button>
+
+                  {[50, 150, 200].map((pct) => (
+                    <button
+                      key={pct}
+                      className={`cert-dl-z-mode${zoomMode === 'custom' && Math.round(customZoom * 100) === pct ? ' cert-dl-z-mode--on' : ''}`}
+                      onClick={() => zoomTo(pct / 100)}
+                    >
+                      {pct}%
+                    </button>
+                  ))}
+                </div>
+
+                {/* Fit Width shortcut — only visible on mobile */}
                 <button
-                  className={`cert-dl-z-mode${isFitWidth ? ' cert-dl-z-mode--on' : ''}`}
+                  className={`cert-dl-z-mode cert-dl-z-fitwidth-mobile${isFitWidth ? ' cert-dl-z-mode--on' : ''}`}
                   onClick={() => setZoomMode('fit-width')}
                   title="Fit to width"
                 >
-                  <IconFitWidth /> Fit Width
+                  <IconFitWidth />
                 </button>
-
-                <button
-                  className={`cert-dl-z-mode${isCustom100 ? ' cert-dl-z-mode--on' : ''}`}
-                  onClick={() => zoomTo(1)}
-                  title="100% actual size"
-                >
-                  100%
-                </button>
-
-                {[50, 150, 200].map((pct) => (
-                  <button
-                    key={pct}
-                    className={`cert-dl-z-mode${zoomMode === 'custom' && Math.round(customZoom * 100) === pct ? ' cert-dl-z-mode--on' : ''}`}
-                    onClick={() => zoomTo(pct / 100)}
-                  >
-                    {pct}%
-                  </button>
-                ))}
               </div>
 
               <div className="cert-dl-zoom-right">
@@ -435,7 +463,7 @@ export default function CertificateDetail() {
             <div className="cert-dl-stage" ref={stageRef}>
               <div
                 className="cert-dl-stage-inner"
-                style={{ minHeight: scaledH + 72 }}
+                style={{ minHeight: scaledH + (isMobile ? 16 : 72) }}
               >
                 {/*
                   Outer div tells layout how much space the scaled cert needs.

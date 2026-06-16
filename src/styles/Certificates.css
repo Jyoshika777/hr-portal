@@ -115,7 +115,9 @@
 .cert-table-wrap {
   background: var(--surface, #fff);
   border: 1px solid var(--border, #e2e8f0);
-  border-radius: 14px; overflow: hidden;
+  border-radius: 14px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .cert-table {
@@ -932,19 +934,88 @@
 }
 
 /* ── Responsive ───────────────────────────────────────────────────────── */
+
+/* ── cert-dl-z-presets: hidden by default on mobile, shown on desktop ── */
+.cert-dl-z-presets {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Fit-width shortcut: only shown on mobile */
+.cert-dl-z-fitwidth-mobile {
+  display: none;
+}
+
 @media (max-width: 960px) {
-  .cert-dl-page { height: auto; overflow: visible; }
-  .cert-dl-body { flex-direction: column; overflow: visible; }
-  .cert-dl-panel { width: 100%; border-right: none; border-bottom: 1px solid var(--border, #e2e8f0); }
+  /* Page becomes normal flow so the panel stacks above the viewer */
+  .cert-dl-page   { height: auto; overflow: visible; }
+  .cert-dl-body   { flex-direction: column; overflow: visible; }
+  .cert-dl-panel  { width: 100%; border-right: none; border-bottom: 1px solid var(--border, #e2e8f0); max-height: none; }
   .cert-dl-viewer-col { overflow: visible; }
-  .cert-dl-stage { flex: none; min-height: 480px; overflow: auto; }
+
+  /* Stage: auto-sized to fit the scaled certificate, no fixed min-height */
+  .cert-dl-stage  { flex: none; overflow-x: auto; overflow-y: visible; -webkit-overflow-scrolling: touch; }
+
+  /* Dot-grid uses position:fixed on desktop (works inside the clipped viewport).
+     On mobile the page is normal flow so fixed would overlay the entire screen. */
+  .cert-dl-stage::before { display: none; }
+
   .cert-dl-zoom-bar { flex-wrap: wrap; height: auto; padding: 8px 14px; gap: 6px; }
   .cert-dl-zoom-right { margin-left: auto; }
 }
 
 @media (max-width: 640px) {
-  .cert-dl-zoom-left { flex-wrap: wrap; }
-  .cert-dl-z-info { display: none; }
+  /* Shrink stage padding: was 36px → 8px; scale calc uses 16px margin to match */
+  .cert-dl-stage-inner { padding: 8px; }
+
+  /* Zoom bar: hide desktop-only separator, presets wrapper, and right info */
+  .cert-dl-z-desktop      { display: none; }
+  .cert-dl-z-presets      { display: none; }
+  .cert-dl-zoom-right     { display: none; }
+  .cert-dl-zoom-left      { flex-wrap: nowrap; }
+  /* Show the compact Fit Width icon instead */
+  .cert-dl-z-fitwidth-mobile { display: inline-flex; }
+
+  /* Header */
+  .cert-dl-header   { padding: 10px 16px; }
+  .cert-dl-title    { font-size: 16px; }
+  .cert-dl-subtitle { font-size: 12px; }
+
+  /* Panel */
+  .cert-dl-section-body { padding: 4px 12px 12px; }
+
+  /* List page: search takes full row */
+  .cert-search-wrap { max-width: 100%; flex: 1 1 100%; }
+}
+
+@media (max-width: 480px) {
+  /* Minimal stage padding on small phones */
+  .cert-dl-stage-inner { padding: 4px; }
+
+  /* Compact zoom controls */
+  .cert-dl-zoom-bar { padding: 6px 10px; gap: 4px; }
+  .cert-dl-z-btn    { height: 28px; padding: 0 8px; font-size: 11px; }
+  .cert-dl-z-pct    { height: 28px; font-size: 11px; min-width: 38px; padding: 0 4px; }
+  .cert-dl-z-mode   { height: 28px; padding: 0 8px; font-size: 11px; }
+
+  /* Compact header */
+  .cert-dl-header   { padding: 8px 12px; }
+  .cert-dl-title    { font-size: 14px; }
+  .cert-dl-subtitle { font-size: 11px; }
+
+  /* Actions panel: 2-col grid so Download stays prominent and other actions pair up */
+  .cert-dl-actions-list        { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .cert-dl-act--primary        { grid-column: 1 / -1; }
+
+  /* List page toolbar stacks vertically */
+  .cert-toolbar                { flex-direction: column; align-items: stretch; }
+  .cert-filter-select          { flex: 1; }
+  .cert-page-header            { flex-direction: column; align-items: flex-start; }
+  .cert-page-header .cert-btn  { width: 100%; justify-content: center; }
+
+  /* Pagination: stack count + buttons */
+  .cert-pagination             { flex-direction: column; align-items: center; gap: 10px; }
 }
 
 /* ── Dark mode ─────────────────────────────────────────────────────────── */
