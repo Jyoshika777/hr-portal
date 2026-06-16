@@ -1,70 +1,230 @@
-# Getting Started with Create React App
+# 🚀 Trivon HR Portal
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> 💼 A Modern Human Resource Management System (HRMS) built with React and Supabase to streamline recruitment, employee management, payroll, certificates, analytics, and HR operations.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🌟 Overview
 
-### `npm start`
+Trivon HR Portal is a comprehensive HR management platform designed to simplify and automate day-to-day HR processes. The system provides an intuitive dashboard for managing employees, candidates, recruitment workflows, offer letters, certificates, payroll, reports, and company settings.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## ✨ Features
 
-### `npm test`
+### 📊 Dashboard
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+* 📈 Real-time HR insights
+* 👋 Personalized welcome dashboard
+* 🔔 Notifications and recent activities
+* ⚡ Quick access to important metrics
 
-### `npm run build`
+### 👥 Employee Management
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+* ➕ Add and manage employees
+* 🏢 Department management
+* 🎯 Role assignment
+* 📋 Employee profiles
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🎯 Recruitment Management
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* 📝 Candidate tracking
+* 🔍 Applicant management
+* 📌 Hiring pipeline
+* 🎤 Interview scheduling
+* ✅ Offer management
 
-### `npm run eject`
+### 📄 Offer Letter Management
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+* 📑 Generate offer letters
+* 👀 Preview documents
+* 📥 Download PDF
+* 🏷️ Company branding support
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 🏆 Certificate Management
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+* 🎓 Internship certificates
+* 🏅 Appreciation certificates
+* 📜 Training completion certificates
+* 📥 PDF downloads
+* 🔐 Certificate verification
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 💰 Payroll Management
 
-## Learn More
+* 💵 Salary records
+* 📊 Payroll reports
+* 💳 Payment tracking
+* 📅 Payroll history
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 📈 Reports & Analytics
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* 📉 Hiring analytics
+* 📊 Employee statistics
+* 📈 Performance reports
+* 🎯 Business insights
 
-### Code Splitting
+### ⭐ Performance Management
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+* 📋 Employee reviews
+* 📊 Performance tracking
+* 🏅 Evaluation reports
+* 📈 Department analytics
 
-### Analyzing the Bundle Size
+### ⚙️ Company Settings
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* 🏢 Company profile management
+* 🎨 Branding customization
+* 🖼️ Logo management
+* 🌙 Theme settings
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🛠️ Tech Stack
 
-### Advanced Configuration
+### 🎨 Frontend
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+* ⚛️ React.js
+* 🎯 JavaScript (ES6+)
+* 🌐 HTML5
+* 🎨 CSS3
 
-### Deployment
+### 🗄️ Backend & Database
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+* 🚀 Supabase
+* 🐘 PostgreSQL
 
-### `npm run build` fails to minify
+### 🔐 Authentication
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* 🔑 Supabase Authentication
+
+### 📊 Additional Tools
+
+* 📈 Analytics & Charts
+* 📄 PDF Generation
+* 🔍 Search & Filtering
+* 📱 Responsive Design
+
+---
+
+## 📂 Project Structure
+
+```text
+📦 hr-portal
+ ┣ 📂 public
+ ┣ 📂 src
+ ┣ 📂 supabase
+ ┣ 📂 build
+ ┣ 📜 package.json
+ ┣ 📜 README.md
+ ┗ 📜 .env
+```
+
+---
+
+## 🚀 Installation
+
+### 1️⃣ Clone Repository
+
+```bash
+git clone https://github.com/yourusername/hr-portal.git
+cd hr-portal
+```
+
+### 2️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+### 3️⃣ Configure Environment Variables
+
+Create a `.env` file:
+
+```env
+REACT_APP_SUPABASE_URL=your_supabase_url
+REACT_APP_SUPABASE_ANON_KEY=your_supabase_key
+```
+
+### 4️⃣ Run Development Server
+
+```bash
+npm start
+```
+
+🌐 Application URL:
+
+```text
+http://localhost:3000
+```
+
+### 5️⃣ Build for Production
+
+```bash
+npm run build
+```
+
+---
+
+## 🎯 Core Modules
+
+| Module           | Description               |
+| ---------------- | ------------------------- |
+| 📊 Dashboard     | HR overview and analytics |
+| 👥 Employees     | Employee management       |
+| 🎯 Recruitment   | Candidate tracking        |
+| 📄 Offer Letters | Offer letter generation   |
+| 🏆 Certificates  | Certificate generation    |
+| 💰 Payroll       | Salary management         |
+| ⭐ Performance    | Employee reviews          |
+| 📈 Reports       | Analytics and reporting   |
+| ⚙️ Settings      | Company configuration     |
+
+---
+
+## 🔒 Security Features
+
+* 🔐 Secure Authentication
+* 👤 Role-Based Access Control
+* 🛡️ Protected Routes
+* 📊 Secure Database Integration
+* ✅ Form Validation
+* ⚠️ Error Handling
+
+---
+
+## 📱 Responsive Design
+
+✔️ Desktop Support
+✔️ Tablet Support
+✔️ Mobile Support
+✔️ Modern UI/UX
+
+---
+
+## 🚀 Future Enhancements
+
+* 📅 Attendance Management
+* 🏖️ Leave Management
+* 📧 Email Notifications
+* 🤖 AI-Powered Insights
+* 📱 Mobile Application
+* 🔔 Real-Time Alerts
+
+---
+
+## 👩‍💻 Developer
+
+**Jyoshika Irlapati**
+
+🎓 Computer Science & Engineering
+💼 Software Developer | AI & ML Enthusiast
+
+---
+
+## 📄 License
+
+This project is developed for organizational and educational purposes.
+
+---
+
+### ⭐ Trivon HR Portal — Empowering Modern Workforce Management
